@@ -3,319 +3,506 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO Meta -->
+
+    <!-- Primary SEO -->
+    <title>Lathiya Harshal — Photographer | Nature, Wildlife & Portraits</title>
     <meta
       name="description"
-      content="Lathiya Harshal - A Photographer specializing in nature, wildlife, flowers, and portraits. Based in Gujarat, India."
+      content="Lathiya Harshal is a photographer based in Gujarat, India, specializing in nature, wildlife, flowers, and portrait photography. Award-winning work recognized by NYKS India and the Gujarat Wildlife Exhibit."
     />
     <meta
       name="keywords"
-      content="photography, nature, wildlife, flowers, portrait, Gujarat, Lathiya Harshal, NYKS india, photography competition"
+      content="Lathiya Harshal, photographer, Gujarat, India, nature photography, wildlife photography, flower photography, portrait photography, NYKS India, photography portfolio"
     />
     <meta name="author" content="Lathiya Harshal" />
-    <title>Lathiya Harshal · Photography</title>
-    <!-- Fonts & Icons -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lathiya Harshal — Photographer" />
+    <meta
+      property="og:description"
+      content="Nature · Wildlife · Flowers · Portraits — Photography by Lathiya Harshal, based in Gujarat, India."
+    />
+    <meta property="og:image" content="images/Featured_img/hero_img.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lathiya Harshal — Photographer" />
+    <meta
+      name="twitter:description"
+      content="Nature · Wildlife · Flowers · Portraits — Photography by Lathiya Harshal, based in Gujarat, India."
+    />
+    <meta name="twitter:image" content="images/Featured_img/hero_img.jpg" />
+
+    <!-- Canonical: Replace with production URL when deployed -->
+    <!-- <link rel="canonical" href="https://your-domain.com/" /> -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <!-- Scroll Progress -->
-    <div class="progress-bar" id="progressBar"></div>
-    <!-- Custom Cursor -->
+    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav>
-      <div class="logo">LH</div>
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#skills">Skills</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#contact">Contact</a>
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header class="site-header" id="siteHeader">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#home" class="logo" aria-label="Lathiya Harshal — Home">
+          <span class="logo-mark">LH</span>
+          <span class="logo-text">Lathiya Harshal</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+          <li><a href="#expertise" class="nav-link">Expertise</a></li>
+          <li><a href="#recognition" class="nav-link">Recognition</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <ul class="mobile-menu-links">
+          <li>
+            <a href="#home" class="mobile-link"><span>01</span> Home</a>
+          </li>
+          <li>
+            <a href="#about" class="mobile-link"><span>02</span> About</a>
+          </li>
+          <li>
+            <a href="#portfolio" class="mobile-link"><span>03</span> Portfolio</a>
+          </li>
+          <li>
+            <a href="#expertise" class="mobile-link"><span>04</span> Expertise</a>
+          </li>
+          <li>
+            <a href="#recognition" class="mobile-link"><span>05</span> Recognition</a>
+          </li>
+          <li>
+            <a href="#contact" class="mobile-link"><span>06</span> Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="mobile-menu-footer">
+        <p>Gujarat, India</p>
+        <a href="mailto:harshal.lathiya2@gmail.com">harshal.lathiya2@gmail.com</a>
       </div>
-      <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <div class="tagline">CAPTURING MOMENTS</div>
-        <h1>Creating<br />Stories</h1>
-        <p style="font-size: 1.2rem; max-width: 500px">
-          Nature · Wildlife · Flowers · Portraits
-        </p>
-        <a href="#portfolio" class="btn">View Portfolio</a>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <div class="section-title"><h2>About</h2></div>
-        <div class="about-grid">
-          <div class="about-text fade-in">
-            <p>
-              I'm <strong>Lathiya Harshal</strong>, a photographer based in
-              Gujarat, India. To me, photography is more than capturing
-              images—it's about observing the world with intention and freezing
-              moments that reveal raw beauty and authenticity.
-            </p>
-            <p>
-              My lens gravitates toward nature's quiet details, the untamed
-              spirit of wildlife, the delicate geometry of flowers, and the
-              unguarded truth in human expressions. I believe every frame should
-              tell a story without words.
-            </p>
-            <div class="achievement-badge">
-              <i
-                class="fas fa-camera-retro"
-                style="color: #c9a96e; margin-right: 10px"
-              ></i>
-              <span
-                ><strong>Specializing in</strong> Nature, Wildlife & Portrait
-                Photography.</span
-              >
-            </div>
-          </div>
-          <div class="fade-in" style="text-align: center">
-            <img
-              src="images/profile_img/avtar.webp"
-              alt="Lathiya Harshal"
-              class="profile-img"
-              loading="lazy"
-            />
-          </div>
+    <main>
+      <!-- ===== HERO ===== -->
+      <section id="home" class="hero" aria-label="Introduction">
+        <div class="hero-bg" aria-hidden="true">
+          <img
+            src="images/Featured_img/hero_img.jpg"
+            alt=""
+            fetchpriority="high"
+          />
         </div>
-      </div>
-    </section>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-    <!-- Portfolio Gallery -->
-    <section id="portfolio">
-      <div class="container">
-        <div class="section-title"><h2>Portfolio</h2></div>
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="featured">
-            Featured
-          </button>
-          <button class="filter-btn" data-filter="nature">Nature</button>
-          <button class="filter-btn" data-filter="wildlife">Wildlife</button>
-          <button class="filter-btn" data-filter="flowers">Flowers</button>
+        <div class="hero-content">
+          <p class="hero-eyebrow">Lathiya Harshal — Photographer</p>
+          <h1 class="hero-title">
+            Creating Stories<br />
+            <span class="hero-title-accent">Through Light.</span>
+          </h1>
+          <p class="hero-subtitle">Nature · Wildlife · Flowers · Portraits</p>
+          <a href="#portfolio" class="btn btn-outline">Explore the Gallery</a>
         </div>
-        <div class="gallery" id="gallery"></div>
-      </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-      <div class="container">
-        <div class="section-title"><h2>Expertise</h2></div>
-        <div class="skills-container">
-          <div class="skill-category fade-in">
-            <h3>Photography</h3>
+        <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
+          <span class="scroll-indicator-text">Scroll</span>
+          <span class="scroll-indicator-line" aria-hidden="true"></span>
+        </a>
+      </section>
 
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Composition & Framing</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Natural Light Mastery</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Wildlife & Nature Photography</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Portrait Photography</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Visual Storytelling</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
+      <!-- ===== ABOUT ===== -->
+      <section id="about" class="section about" aria-label="About the photographer">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">About</p>
+            <h2 class="section-title">The Photographer</h2>
           </div>
-          <div class="skill-category fade-in">
-            <h3>Post-Production & Editing</h3>
 
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Color Grading</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span>Adobe Lightroom</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info"><span>Adobe Photoshop</span></div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info"><span>Photo Retouching</span></div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info"><span>Capcut</span></div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Achievements -->
-    <section id="achievements">
-      <div class="container">
-        <div class="section-title"><h2>Achievements</h2></div>
-        <div class="timeline">
-          <div class="timeline-card fade-in">
-            <div class="timeline-year">2023</div>
-            <h4>1st Place</h4>
-            <p>District Level Photography Competition · NYKS India</p>
-          </div>
-          <div class="timeline-card fade-in">
-            <div class="timeline-year">2023</div>
-            <h4>2nd Place</h4>
-            <p>
-              State Level Photography Competition · NYKS India · Gandhinagar
-            </p>
-          </div>
-          <div class="timeline-card fade-in">
-            <div class="timeline-year">2025</div>
-            <h4>Featured</h4>
-            <p>Gujarat Wildlife Exhibit</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-title"><h2>Contact</h2></div>
-        <div class="contact-grid">
-          <div class="contact-form fade-in">
-            <h3 style="margin-bottom: 2rem">Let's Work Together</h3>
-
-            <form
-              id="contactForm"
-              action="https://formspree.io/f/xnnvjyqr"
-              method="POST"
-            >
-              <input
-                type="text"
-                name="_name"
-                placeholder="Your Name"
-                required
+          <div class="about-layout">
+            <div class="about-portrait fade-in">
+              <img
+                src="images/profile_img/avtar.jpg"
+                alt="Portrait of photographer Lathiya Harshal"
+                loading="lazy"
               />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                required
-              />
-              <textarea
-                name="message"
-                rows="4"
-                placeholder="Message"
-                required
-              ></textarea>
-              <button type="submit" class="btn" style="width: 100%">
-                Send Message
+            </div>
+
+            <div class="about-content fade-in">
+              <h3 class="about-name">Lathiya Harshal</h3>
+              <p class="about-role">Photographer — Gujarat, India</p>
+
+              <div class="about-bio">
+                <p>
+                  I'm a photographer based in Gujarat, India. To me, photography
+                  is more than capturing images — it's about observing the world
+                  with intention and freezing moments that reveal raw beauty and
+                  authenticity.
+                </p>
+                <p>
+                  My lens gravitates toward nature's quiet details, the untamed
+                  spirit of wildlife, the delicate geometry of flowers, and the
+                  unguarded truth in human expressions. I believe every frame
+                  should tell a story without words.
+                </p>
+              </div>
+
+              <div class="about-focus">
+                <p class="about-focus-label">Areas of Focus</p>
+                <ul class="about-focus-list">
+                  <li>Nature</li>
+                  <li>Wildlife</li>
+                  <li>Flowers</li>
+                  <li>Portraits</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== THE GALLERY ===== -->
+      <section id="portfolio" class="section portfolio" aria-label="Portfolio gallery">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Portfolio</p>
+            <h2 class="section-title">The Gallery</h2>
+          </div>
+        </div>
+
+        <!-- Sticky category navigation -->
+        <div class="gallery-filter" id="galleryFilter">
+          <div class="container">
+            <div class="filter-buttons" role="group" aria-label="Filter gallery by category">
+              <button class="filter-btn active" data-filter="featured" aria-pressed="true">
+                Featured
               </button>
-            </form>
-          </div>
-          <div class="contact-info fade-in">
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>Gujarat, India</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>harshal.lathiya2@gmail.com</span>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-youtube"></i>
-              <span>Harshal Lathiya</span>
-            </div>
-            <div class="social-links">
-              <a href="https://www.linkedin.com/in/harshal-lathiya11/"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="https://github.com/HarshalLathiya"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a
-                href="https://harshallathiya.github.io/My_Portfolio/"
-                target="_blank"
-                title="View Technical Portfolio"
-              >
-                <i class="fas fa-briefcase"></i>
-              </a>
+              <button class="filter-btn" data-filter="all" aria-pressed="false">
+                All
+              </button>
+              <button class="filter-btn" data-filter="nature" aria-pressed="false">
+                Nature
+              </button>
+              <button class="filter-btn" data-filter="wildlife" aria-pressed="false">
+                Wildlife
+              </button>
+              <button class="filter-btn" data-filter="flowers" aria-pressed="false">
+                Flowers
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>© 2025 Lathiya Harshal. All rights reserved.</p>
+        <div class="container gallery-container">
+          <div class="gallery" id="gallery" aria-live="polite"></div>
+          <p class="gallery-empty" id="galleryEmpty" hidden>
+            No photographs available in this collection yet.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== EXPERTISE ===== -->
+      <section id="expertise" class="section expertise" aria-label="Areas of expertise">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Expertise</p>
+            <h2 class="section-title">Areas of Focus</h2>
+          </div>
+
+          <div class="expertise-grid">
+            <article class="expertise-item fade-in">
+              <span class="expertise-number">01</span>
+              <h3 class="expertise-title">Nature</h3>
+              <p class="expertise-desc">
+                Observing the quiet details of the natural world — light,
+                texture, and the landscapes that surround us.
+              </p>
+            </article>
+
+            <article class="expertise-item fade-in">
+              <span class="expertise-number">02</span>
+              <h3 class="expertise-title">Wildlife</h3>
+              <p class="expertise-desc">
+                Capturing the untamed spirit of animals in their natural
+                habitat, with patience and respect.
+              </p>
+            </article>
+
+            <article class="expertise-item fade-in">
+              <span class="expertise-number">03</span>
+              <h3 class="expertise-title">Flowers</h3>
+              <p class="expertise-desc">
+                The delicate geometry and color of botanical forms, studied
+                closely and presented with intention.
+              </p>
+            </article>
+
+            <article class="expertise-item fade-in">
+              <span class="expertise-number">04</span>
+              <h3 class="expertise-title">Portraits</h3>
+              <p class="expertise-desc">
+                The unguarded truth in human expression — authentic moments
+                over posed perfection.
+              </p>
+            </article>
+
+            <article class="expertise-item fade-in">
+              <span class="expertise-number">05</span>
+              <h3 class="expertise-title">Post-Production</h3>
+              <p class="expertise-desc">
+                Refined color grading and retouching that honors the original
+                moment rather than masking it.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== RECOGNITION ===== -->
+      <section id="recognition" class="section recognition" aria-label="Recognition and achievements">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Recognition</p>
+            <h2 class="section-title">Achievements</h2>
+          </div>
+
+          <div class="recognition-timeline">
+            <article class="recognition-item fade-in">
+              <div class="recognition-year">2023</div>
+              <div class="recognition-content">
+                <span class="recognition-number">01</span>
+                <h3 class="recognition-title">First Place</h3>
+                <p class="recognition-desc">
+                  District Level Photography Competition
+                </p>
+                <p class="recognition-org">NYKS India</p>
+              </div>
+            </article>
+
+            <article class="recognition-item fade-in">
+              <div class="recognition-year">2023</div>
+              <div class="recognition-content">
+                <span class="recognition-number">02</span>
+                <h3 class="recognition-title">Second Place</h3>
+                <p class="recognition-desc">
+                  State Level Photography Competition
+                </p>
+                <p class="recognition-org">NYKS India · Gandhinagar</p>
+              </div>
+            </article>
+
+            <article class="recognition-item fade-in">
+              <div class="recognition-year">2025</div>
+              <div class="recognition-content">
+                <span class="recognition-number">03</span>
+                <h3 class="recognition-title">Featured</h3>
+                <p class="recognition-desc">Gujarat Wildlife Exhibit</p>
+                <p class="recognition-org">Exhibition Feature</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section id="contact" class="section contact" aria-label="Contact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Contact</p>
+            <h2 class="section-title">Let's Work Together</h2>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-intro fade-in">
+              <p class="contact-statement">
+                For collaborations and photography inquiries.
+              </p>
+
+              <div class="contact-details">
+                <div class="contact-item">
+                  <span class="contact-item-label">Email</span>
+                  <a href="mailto:harshal.lathiya2@gmail.com" class="contact-item-value">
+                    harshal.lathiya2@gmail.com
+                  </a>
+                </div>
+                <div class="contact-item">
+                  <span class="contact-item-label">Location</span>
+                  <span class="contact-item-value">Gujarat, India</span>
+                </div>
+                <div class="contact-item">
+                  <span class="contact-item-label">Connect</span>
+                  <div class="social-links">
+                    <a
+                      href="https://www.linkedin.com/in/harshal-lathiya11/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn profile"
+                    >
+                      <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="https://github.com/HarshalLathiya"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub profile"
+                    >
+                      <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="https://harshallathiya.github.io/My_Portfolio/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Technical portfolio"
+                    >
+                      <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-wrap fade-in">
+              <form id="contactForm" class="contact-form" novalidate>
+                <div class="form-field">
+                  <label for="formName">Name</label>
+                  <input
+                    type="text"
+                    id="formName"
+                    name="name"
+                    placeholder="Your name"
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="form-error" id="nameError" aria-hidden="true"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="formEmail">Email</label>
+                  <input
+                    type="email"
+                    id="formEmail"
+                    name="email"
+                    placeholder="Your email address"
+                    autocomplete="email"
+                    required
+                  />
+                  <span class="form-error" id="emailError" aria-hidden="true"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="formMessage">Message</label>
+                  <textarea
+                    id="formMessage"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell me about your project or inquiry"
+                    required
+                  ></textarea>
+                  <span class="form-error" id="messageError" aria-hidden="true"></span>
+                </div>
+
+                <button type="submit" class="btn btn-solid" id="submitBtn">
+                  Send Message
+                </button>
+
+                <div
+                  class="form-status"
+                  id="formStatus"
+                  role="status"
+                  aria-live="polite"
+                ></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">
+          © <span id="currentYear">2025</span> Lathiya Harshal
+        </p>
+        <p class="footer-tagline">Photography · Gujarat, India</p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-      <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <!-- ===== LIGHTBOX ===== -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+      aria-hidden="true"
+    >
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+
+      <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
       <div class="lightbox-content">
         <img id="lightboxImg" src="" alt="" />
+        <div class="lightbox-meta">
+          <p class="lightbox-title" id="lightboxTitle"></p>
+          <p class="lightbox-category" id="lightboxCategory"></p>
+        </div>
+        <p class="lightbox-counter" id="lightboxCounter"></p>
       </div>
+
+      <button class="lightbox-next" id="lightboxNext" aria-label="Next image">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
