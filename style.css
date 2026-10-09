@@ -13,7 +13,7 @@
   /* Text */
   --color-text: #f5f3ee;
   --color-text-muted: #a8a6a0;
-  --color-text-subtle: #737373;
+  --color-text-subtle: #8c8c8c; /* ~6:1 on --color-bg, passes WCAG AA for small text */
 
   /* Accent */
   --color-accent: #c9a96e;
@@ -144,6 +144,26 @@ h4 {
 .section-heading {
   margin-bottom: 4rem;
   text-align: center;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* ===== SCROLL PROGRESS ===== */
@@ -789,6 +809,32 @@ h4 {
   color: var(--color-accent);
 }
 
+/* Placeholder height while an image loads, and a quiet fallback if one is missing */
+.gallery-item img {
+  min-height: 160px;
+}
+
+.gallery-item.loaded img {
+  min-height: 0;
+}
+
+.gallery-item.is-broken {
+  min-height: 160px;
+}
+
+.gallery-item.is-broken img {
+  visibility: hidden;
+}
+
+/* Honeypot: off-screen rather than display:none */
+.form-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Filter transition */
 .gallery.filtering {
   opacity: 0;
@@ -852,6 +898,41 @@ h4 {
   font-size: 0.9rem;
   color: var(--color-text-muted);
   line-height: 1.7;
+}
+
+.expertise-link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-border-accent);
+  padding-bottom: 2px;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.expertise-link:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+/* Five items in a three-column grid: centre the last two on the final row */
+@media (min-width: 1025px) {
+  .expertise-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .expertise-item {
+    grid-column: span 2;
+  }
+
+  .expertise-item:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .expertise-item:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
 }
 
 /* ============================================================

@@ -407,8 +407,20 @@
   const galleryEmpty = $("#galleryEmpty");
   const galleryFilter = $("#galleryFilter");
 
+  const CATEGORY_LABELS = {
+    featured: "Featured",
+    nature: "Nature",
+    wildlife: "Wildlife",
+    flowers: "Flowers",
+  };
+
   let currentFilter = "featured";
   let currentItems = [];
+
+  function applyFilter(filter) {
+    const btn = $$(".filter-btn").find((b) => b.dataset.filter === filter);
+    if (btn) btn.click();
+  }
 
   function getFilteredItems(filter) {
     if (filter === "all") return galleryData;
@@ -438,20 +450,30 @@
       div.setAttribute("tabindex", "0");
       div.setAttribute("aria-label", item.alt);
 
-      div.innerHTML =
-        '<img src="' +
-        item.src +
-        '" alt="' +
-        item.alt +
-        '" loading="lazy">' +
-        '<div class="item-overlay">' +
-        "<h4>" +
-        item.title +
-        "</h4>" +
-        "<p>" +
-        item.category +
-        "</p>" +
-        "</div>";
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.alt;
+      img.loading = "lazy";
+      img.decoding = "async";
+      // Reserve space once the real proportions are known (reduces column jumping)
+      img.addEventListener("load", () => {
+        if (img.naturalWidth && img.naturalHeight) {
+          img.style.aspectRatio = img.naturalWidth + " / " + img.naturalHeight;
+        }
+        div.classList.add("loaded");
+      });
+      img.addEventListener("error", () => {
+        div.classList.add("is-broken");
+      });
+
+      const overlay = document.createElement("div");
+      overlay.className = "item-overlay";
+      const label = document.createElement("p");
+      label.textContent = CATEGORY_LABELS[item.category] || item.category;
+      overlay.appendChild(label);
+
+      div.appendChild(img);
+      div.appendChild(overlay);
 
       const open = () => openLightbox(index);
       div.addEventListener("click", open);
@@ -499,16 +521,25 @@
   /* ============================================================
      STICKY FILTER DETECTION
      ============================================================ */
+  // A sticky element is always "intersecting", so observe a zero-height
+  // sentinel placed just above it instead.
   if (galleryFilter && "IntersectionObserver" in window) {
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText = "height:1px;margin-bottom:-1px;pointer-events:none;";
+    galleryFilter.parentNode.insertBefore(sentinel, galleryFilter);
+
+    const headerH = siteHeader ? siteHeader.offsetHeight : 72;
     const stickyObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          galleryFilter.classList.toggle("is-stuck", !entry.isIntersecting);
-        });
+      ([entry]) => {
+        galleryFilter.classList.toggle(
+          "is-stuck",
+          !entry.isIntersecting && entry.boundingClientRect.top < headerH + 2
+        );
       },
-      { threshold: 0 }
+      { rootMargin: "-" + (headerH + 1) + "px 0px 0px 0px", threshold: 0 }
     );
-    stickyObserver.observe(galleryFilter);
+    stickyObserver.observe(sentinel);
   }
 
   /* ============================================================
@@ -557,12 +588,24 @@
     const item = currentItems[lightboxIndex];
     lightboxImg.src = item.src;
     lightboxImg.alt = item.alt;
-    lightboxTitle.textContent = item.title;
-    lightboxCategory.textContent = item.category;
+    // Titles are currently just the category name, so show it once
+    lightboxTitle.textContent = item.title && item.title !== CATEGORY_LABELS[item.category]
+      ? item.title
+      : CATEGORY_LABELS[item.category] || item.category;
+    lightboxCategory.textContent =
+      item.location || item.year
+        ? [item.location, item.year].filter(Boolean).join(" · ")
+        : "";
     lightboxCounter.textContent =
       String(lightboxIndex + 1).padStart(2, "0") +
       " / " +
       String(currentItems.length).padStart(2, "0");
+
+    // Warm the cache for the neighbouring images
+    [1, -1].forEach((offset) => {
+      const n = currentItems[(lightboxIndex + offset + currentItems.length) % currentItems.length];
+      if (n) new Image().src = n.src;
+    });
   }
 
   function navigateLightbox(direction) {
@@ -596,8 +639,48 @@
         case "ArrowRight":
           navigateLightbox(1);
           break;
+        case "Tab": {
+          // Keep focus inside the dialog
+          const focusable = [lightboxClose, lightboxPrev, lightboxNext];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          } else if (!focusable.includes(document.activeElement)) {
+            e.preventDefault();
+            first.focus();
+          }
+          break;
+        }
       }
     });
+
+    // Touch swipe
+    let touchStartX = 0;
+    let touchStartY = 0;
+    lightbox.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      },
+      { passive: true }
+    );
+    lightbox.addEventListener(
+      "touchend",
+      (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          navigateLightbox(dx < 0 ? 1 : -1);
+        }
+      },
+      { passive: true }
+    );
   }
 
   /* ============================================================
@@ -618,6 +701,7 @@
   function setFieldError(input, errorEl, message) {
     if (!input || !errorEl) return;
     input.classList.toggle("invalid", Boolean(message));
+    input.setAttribute("aria-invalid", message ? "true" : "false");
     errorEl.textContent = message || "";
     errorEl.setAttribute("aria-hidden", message ? "false" : "true");
   }
@@ -681,6 +765,12 @@
 
       const formData = new FormData(contactForm);
 
+      // Honeypot: real visitors never fill this hidden field
+      if (formData.get("_gotcha")) {
+        contactForm.reset();
+        return;
+      }
+
       try {
         const response = await fetch(FORMSPREE_ENDPOINT, {
           method: "POST",
@@ -725,6 +815,18 @@
       });
     });
   }
+
+  /* ============================================================
+     COLLECTION TILES -> open the matching gallery filter
+     ============================================================ */
+  $$("[data-collection]").forEach((tile) => {
+    tile.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter(tile.dataset.collection);
+      const target = $("#portfolio");
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
 
   /* ============================================================
      FOOTER — DYNAMIC YEAR

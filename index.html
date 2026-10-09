@@ -36,8 +36,35 @@
     />
     <meta name="twitter:image" content="images/Featured_img/hero_img.jpg" />
 
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="color-scheme" content="dark" />
+
     <!-- Canonical: Replace with production URL when deployed -->
     <!-- <link rel="canonical" href="https://your-domain.com/" /> -->
+    <!-- Note: og:image / twitter:image should become absolute URLs
+         (https://your-domain.com/images/Featured_img/hero_img.jpg) once deployed,
+         otherwise most social platforms will not show the preview. -->
+
+    <!-- Structured data: only facts already stated on this site -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lathiya Harshal",
+        "jobTitle": "Photographer",
+        "email": "harshal.lathiya2@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Gujarat",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": ["Nature photography", "Wildlife photography", "Flower photography", "Portrait photography"],
+        "sameAs": [
+          "https://www.linkedin.com/in/harshal-lathiya11/",
+          "https://github.com/HarshalLathiya"
+        ]
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,6 +84,8 @@
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <!-- Scroll Progress -->
     <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
@@ -121,7 +150,7 @@
       </div>
     </div>
 
-    <main>
+    <main id="main">
       <!-- ===== HERO ===== -->
       <section id="home" class="hero" aria-label="Introduction">
         <div class="hero-bg" aria-hidden="true">
@@ -255,6 +284,7 @@
                 Observing the quiet details of the natural world — light,
                 texture, and the landscapes that surround us.
               </p>
+              <a href="#portfolio" class="expertise-link" data-collection="nature">View gallery</a>
             </article>
 
             <article class="expertise-item fade-in">
@@ -264,6 +294,7 @@
                 Capturing the untamed spirit of animals in their natural
                 habitat, with patience and respect.
               </p>
+              <a href="#portfolio" class="expertise-link" data-collection="wildlife">View gallery</a>
             </article>
 
             <article class="expertise-item fade-in">
@@ -273,6 +304,7 @@
                 The delicate geometry and color of botanical forms, studied
                 closely and presented with intention.
               </p>
+              <a href="#portfolio" class="expertise-link" data-collection="flowers">View gallery</a>
             </article>
 
             <article class="expertise-item fade-in">
@@ -401,6 +433,11 @@
 
             <div class="contact-form-wrap fade-in">
               <form id="contactForm" class="contact-form" novalidate>
+                <!-- Honeypot field for spam bots; hidden from people and assistive tech -->
+                <div class="form-hp" aria-hidden="true">
+                  <label for="formHp">Leave this field empty</label>
+                  <input type="text" id="formHp" name="_gotcha" tabindex="-1" autocomplete="off" />
+                </div>
                 <div class="form-field">
                   <label for="formName">Name</label>
                   <input
@@ -409,6 +446,7 @@
                     name="name"
                     placeholder="Your name"
                     autocomplete="name"
+                    aria-describedby="nameError"
                     required
                   />
                   <span class="form-error" id="nameError" aria-hidden="true"></span>
@@ -422,6 +460,7 @@
                     name="email"
                     placeholder="Your email address"
                     autocomplete="email"
+                    aria-describedby="emailError"
                     required
                   />
                   <span class="form-error" id="emailError" aria-hidden="true"></span>
@@ -434,6 +473,7 @@
                     name="message"
                     rows="5"
                     placeholder="Tell me about your project or inquiry"
+                    aria-describedby="messageError"
                     required
                   ></textarea>
                   <span class="form-error" id="messageError" aria-hidden="true"></span>
